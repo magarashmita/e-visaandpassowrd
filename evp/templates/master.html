@@ -59,9 +59,9 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="master.html">e-VP<span>.</span></a></h1>
+      <h1 class="logo"><a href="{% url 'index' %}">e-VP<span>.</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="static/img/logo.png" alt=""></a>-->
+      <!-- <a href="index.html" class="logo"><img src="static/img/npgov.png" alt=""></a> -->
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -71,23 +71,18 @@
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li class="dropdown"><a href="#"><span>Visa and Passport</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="form.html">Tourist visa</a></li>
-              <!-- <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li> -->
-              <li><a href="form.html">Student Visa</a></li>
-              <li><a href="form.html">Business Visa</a></li>
-              <li><a href="form.html">Passport</a></li>
+              <li><a href="{% url 'login' %}">Tourist visa</a></li>
+              <li><a href="{% url 'login' %}">Student Visa</a></li>
+              <li><a href="{% url 'login' %}">Business Visa</a></li>
+              <li><a href="{% url 'login' %}">Passport</a></li>
             </ul>
           </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" href="signin.html">Login/Signup</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'logout' %}"><i class="fa fa-lock"></i>Logout</a></li>
+          {% else %}
+          <li><a href="{% url 'login' %}"><i class="fa fa-lock"></i>Login</a></li>
+          {% endif %}
 
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -102,7 +97,7 @@
       <h1>Welcome to <span>e-VP</span></h1>
       <h2>Apply here and Travel fast</h2>
       <div class="d-flex">
-        <a href="signin.html" class="btn-get-started scrollto">Get Started</a>
+        <a href="{% url 'signup' %}" class="btn-get-started scrollto">Get Started</a>
       </div>
     </div>
   </section><!-- End Hero -->
